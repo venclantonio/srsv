@@ -25,12 +25,12 @@ func (drawer *Drawer) Start() {
 	for {
 		select {
 		case crossroad := <-drawer.Inputs:
-			drawer.draw(crossroad.counter, crossroad.semaphores)
+			drawer.draw(crossroad.semaphores)
 		}
 	}
 }
 
-func (drawer *Drawer) draw(counter int, semaphores map[string]*Semafor) {
+func (drawer *Drawer) draw(semaphores map[string]*Semafor) {
 
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
@@ -63,7 +63,6 @@ func (drawer *Drawer) draw(counter int, semaphores map[string]*Semafor) {
 	fmt.Println("\t\t|\t|\t|\t|\t|\t|")
 	fmt.Println("\t\t|\t|\t|\t|\t|\t|")
 
-	fmt.Println(counter)
 }
 
 func drawWalker(semaphore *Semafor) string {

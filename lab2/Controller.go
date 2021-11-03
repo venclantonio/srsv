@@ -26,57 +26,50 @@ func NewController() {
 	drawer := NewDraw()
 	go drawer.Start()
 
-	counter := 0
 	go func() {
 
 		for {
 
 			SpecialRightEast(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[StraightEast], semaphores[WalkerLeft])
 
 			NorthSouth(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[LeftWest], nil)
 
 			NorthSouthLeft(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[RightNorth], nil)
 
 			SpecialRightSouth(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[StraightEast], semaphores[WalkerBottom])
 
 			WestEast(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[LeftWest], nil)
 
 			WestEastLeft(semaphores)
 			drawer.Inputs <- &input{
-				counter:    counter,
 				semaphores: semaphores,
 			}
-			counter++
+
 			Sleep(semaphores[RightEast], nil)
 		}
 
